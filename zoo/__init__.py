@@ -38,10 +38,10 @@ class Zoo:
 
     self.frame_delay()
 
-  def update_node(self, pos, color=[0, 0, 0]):
+  def set_node(self, pos, color=[0, 0, 0]):
     self.frame[pos] = color
 
-  def update_frame(self, frame):
+  def set_frame(self, frame):
     pass
 
   def limit_bright(self, val):
