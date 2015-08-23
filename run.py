@@ -1,31 +1,24 @@
 #!/usr/bin/python
+from zoo import Zoo
 from time import sleep
-import serial
 
-ser = serial.Serial('/dev/ttyACM0', 9600)
-
-FRAME_DELAY = 0.0030
-START_CHAR = "@"
-END_CHAR = "#"
+z = Zoo()
 
 def setColor(r, g, b):
-  str = START_CHAR
 
   for x in range(1, 89):
-    str += "{0:0>3}{1:0>3}{2:0>3}{3:0>3}".format(x, r, g, b)
+    z.update_node(x, [r, g, b])
 
-  str += END_CHAR
+  z.send_frame()
 
-  #print str
-  ser.write(str)
-  sleep(FRAME_DELAY)
+
+setColor(0, 0, 0)
+sleep(1)
 
 while True:
-  setColor(0, 0, 0)
   setColor(5, 0, 0)
   sleep(1)
   setColor(0, 5, 0)
   sleep(1)
   setColor(0, 0, 5)
   sleep(1)
-  setColor(0, 0, 0)
