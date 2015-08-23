@@ -8,6 +8,7 @@ class Zoo:
   START_CHAR = "@"
   END_CHAR = "#"
   FRAME_DELAY = 0.0030
+  BRIGHTNESS = 0.1
 
   def __init__(self):
     self.frame = self.init_frame()
@@ -25,7 +26,11 @@ class Zoo:
       if x == 0:
         continue
       else:
-        serial_array.append("{0:0>3}{1:0>3}{2:0>3}{3:0>3}".format(x, colors[0], colors[1], colors[2]))
+        r = self.limit_bright(colors[0])
+        g = self.limit_bright(colors[1])
+        b = self.limit_bright(colors[2])
+
+        serial_array.append("{0:0>3}{1:0>3}{2:0>3}{3:0>3}".format(x, r, g, b))
 
     serial_array.append(self.END_CHAR)
 
@@ -38,6 +43,9 @@ class Zoo:
 
   def update_frame(self, frame):
     pass
+
+  def limit_bright(self, val):
+    return int(val * self.BRIGHTNESS)
 
   def frame_delay(self):
     sleep(self.FRAME_DELAY)

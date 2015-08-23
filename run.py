@@ -16,9 +16,9 @@ setColor(0, 0, 0)
 sleep(1)
 
 while True:
-  setColor(5, 0, 0)
+  setColor(255, 0, 0)
   sleep(1)
-  setColor(0, 5, 0)
+  setColor(0, 255, 0)
   sleep(1)
-  setColor(0, 0, 5)
+  setColor(0, 0, 255)
   sleep(1)
