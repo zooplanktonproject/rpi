@@ -21,3 +21,8 @@ while True:
     z.send_frame()
 
     sleep(.1)
+
+    z.set_node(x, [255, 255, 255])
+    z.send_frame()
+
+    sleep(.1)
