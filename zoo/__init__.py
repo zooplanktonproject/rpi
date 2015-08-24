@@ -8,13 +8,17 @@ class Zoo:
   START_CHAR = "@"
   END_CHAR = "#"
   FRAME_DELAY = 0.0030
-  BRIGHTNESS = 0.1
+  NODE_BRIGHTNESS = 0.25
+  SPIRE_BRIGHTNESS = 0.25
 
   def __init__(self):
-    self.frame = self.init_frame()
+    self.reset_frame()
 
   def init_frame(self):
     return np.zeros(shape=(self.NODE_COUNT, 3), dtype=np.uint8)
+
+  def reset_frame(self):
+    self.frame = self.init_frame()
 
   def send_frame(self):
     serial_array = []
@@ -22,13 +26,18 @@ class Zoo:
     serial_array.append(self.START_CHAR)
 
     for x, colors in enumerate(self.frame):
-      # TODO: send zero address value to spire
+
       if x == 0:
-        continue
+        r = self.limit_spire_bright(colors[0])
+        g = self.limit_spire_bright(colors[1])
+        b = self.limit_spire_bright(colors[2])
+
+        output.write("${0:0>3}{1:0>3}{2:0>3}%".format(r, g, b));
       else:
-        r = self.limit_bright(colors[0])
-        g = self.limit_bright(colors[1])
-        b = self.limit_bright(colors[2])
+
+        r = self.limit_node_bright(colors[0])
+        g = self.limit_node_bright(colors[1])
+        b = self.limit_node_bright(colors[2])
 
         serial_array.append("{0:0>3}{1:0>3}{2:0>3}{3:0>3}".format(x, r, g, b))
 
@@ -44,8 +53,11 @@ class Zoo:
   def set_frame(self, frame):
     pass
 
-  def limit_bright(self, val):
-    return int(val * self.BRIGHTNESS)
+  def limit_node_bright(self, val):
+    return int(val * self.NODE_BRIGHTNESS)
+
+  def limit_spire_bright(self, val):
+    return int(val * self.SPIRE_BRIGHTNESS)
 
   def frame_delay(self):
     sleep(self.FRAME_DELAY)
