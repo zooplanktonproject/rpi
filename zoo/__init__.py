@@ -51,7 +51,7 @@ class Zoo:
   def set_node(self, pos, color=[0, 0, 0]):
     self.frame[pos] = color
 
-  def set_frame(self, frame):
+  def set_frame(self, frame_array):
     # warning: can fuck shit up right here
     self.frame = np.asarray(frame_array, dtype=np.uint8)
 
