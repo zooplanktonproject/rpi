@@ -4,12 +4,13 @@ from time import sleep
 
 class Zoo:
   # spire is considered a node at position zero
-  NODE_COUNT = 89
+  NODE_COUNT = 90
   START_CHAR = "@"
   END_CHAR = "#"
   FRAME_DELAY = 0.0030
-  NODE_BRIGHTNESS = 0.25
-  SPIRE_BRIGHTNESS = 0.25
+  NODE_BRIGHTNESS = 0.1
+  # .7 prevents white flicker, perhaps implement that elsewhere though as a limit?
+  SPIRE_BRIGHTNESS = 0.1
 
   def __init__(self):
     self.reset_frame()
@@ -51,7 +52,8 @@ class Zoo:
     self.frame[pos] = color
 
   def set_frame(self, frame):
-    pass
+    # warning: can fuck shit up right here
+    self.frame = np.asarray(frame_array, dtype=np.uint8)
 
   def limit_node_bright(self, val):
     return int(val * self.NODE_BRIGHTNESS)
