@@ -8,9 +8,9 @@ class Zoo:
   START_CHAR = "@"
   END_CHAR = "#"
   FRAME_DELAY = 0.0030
-  NODE_BRIGHTNESS = 0.1
+  NODE_BRIGHTNESS = 0.8
   # .7 prevents white flicker, perhaps implement that elsewhere though as a limit?
-  SPIRE_BRIGHTNESS = 0.1
+  SPIRE_BRIGHTNESS = 0.7
 
   def __init__(self):
     self.reset_frame()
