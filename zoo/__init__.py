@@ -66,3 +66,9 @@ class Zoo:
 
   def frame_delay(self):
     pass#time.sleep(self.FRAME_DELAY)
+
+  # gget some sleep asshole
+  def fade_out(self):
+    iterations = 100
+    for x in iterations:
+      self.frame -= x
