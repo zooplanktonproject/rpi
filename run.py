@@ -6,7 +6,7 @@ import json
 z = Zoo()
 
 
-with open('./FQAikp95qxSyQ.json') as data_file:
+with open('./data/frames/mKI9lgC8ALsGs.json') as data_file:
   data = json.load(data_file)
 
 
