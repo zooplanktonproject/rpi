@@ -1,6 +1,6 @@
 import numpy as np
 import output
-from time
+import time
 
 class Zoo:
   # spire is considered a node at position zero
@@ -36,11 +36,12 @@ class Zoo:
         output.write("${0:0>3}{1:0>3}{2:0>3}%".format(r, g, b));
       else:
 
-        r = self.limit_node_bright(colors[0])
-        g = self.limit_node_bright(colors[1])
-        b = self.limit_node_bright(colors[2])
+        # more performance eeking
+        #r = self.limit_node_bright(colors[0])
+        #g = self.limit_node_bright(colors[1])
+        #b = self.limit_node_bright(colors[2])
 
-        serial_array.append("{0:0>3}{1:0>3}{2:0>3}{3:0>3}".format(x, r, g, b))
+        serial_array.append("{0:0>3}{1:0>3}{2:0>3}{3:0>3}".format(x, colors[0], colors[1], colors[2]))
 
     serial_array.append(self.END_CHAR)
 
@@ -56,10 +57,12 @@ class Zoo:
     self.frame = np.asarray(frame_array, dtype=np.uint8)
 
   def limit_node_bright(self, val):
-    return int(val * self.NODE_BRIGHTNESS)
+    # wow, this dramatically slows the PI
+    #return int(val * self.NODE_BRIGHTNESS)
+    return val
 
   def limit_spire_bright(self, val):
     return int(val * self.SPIRE_BRIGHTNESS)
 
   def frame_delay(self):
-    time.sleep(self.FRAME_DELAY)
+    pass#time.sleep(self.FRAME_DELAY)
