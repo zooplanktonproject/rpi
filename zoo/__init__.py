@@ -1,6 +1,6 @@
 import numpy as np
 import output
-from time import sleep
+from time
 
 class Zoo:
   # spire is considered a node at position zero
@@ -62,4 +62,4 @@ class Zoo:
     return int(val * self.SPIRE_BRIGHTNESS)
 
   def frame_delay(self):
-    sleep(self.FRAME_DELAY)
+    time.sleep(self.FRAME_DELAY)
