@@ -13,6 +13,9 @@ class Zoo:
   NODE_BRIGHTNESS = 0.8
   # .7 prevents white flicker, perhaps implement that elsewhere though as a limit?
   SPIRE_BRIGHTNESS = 0.7
+  # when we send the spire comm we check the RGB sum against this value
+  # to prevent flickering
+  SPIRE_SUM_CUTOFF = (255 - (255 * 0.07)) * 3
 
   def __init__(self):
     self.play_number = 0;
@@ -34,11 +37,15 @@ class Zoo:
 
       # center position is spire color, send every 30 frames
       if x == 0:
-        r = self.limit_spire_bright(colors[0])
-        g = self.limit_spire_bright(colors[1])
-        b = self.limit_spire_bright(colors[2])
+        # value is too damn high, dont want no flickerin
+        if (colors[0] + colors[1] + colors[2]) > self.SPIRE_SUM_CUTOFF:
+          r = self.limit_spire_bright(colors[0])
+          g = self.limit_spire_bright(colors[1])
+          b = self.limit_spire_bright(colors[2])
+          output.write("${0:0>3}{1:0>3}{2:0>3}%".format(r, g, b));
+        else:
+          output.write("${0:0>3}{1:0>3}{2:0>3}%".format(colors[0], colors[1], colors[2]));
 
-        output.write("${0:0>3}{1:0>3}{2:0>3}%".format(r, g, b));
       else:
 
         # more performance eeking
