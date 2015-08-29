@@ -1,6 +1,8 @@
 import numpy as np
 import output
 import time
+import json
+
 
 class Zoo:
   # spire is considered a node at position zero
@@ -13,7 +15,9 @@ class Zoo:
   SPIRE_BRIGHTNESS = 0.7
 
   def __init__(self):
+    self.play_number = 0;
     self.reset_frame()
+    self.frame_data = []
 
   def init_frame(self):
     return np.zeros(shape=(self.NODE_COUNT, 3), dtype=np.uint8)
@@ -28,6 +32,7 @@ class Zoo:
 
     for x, colors in enumerate(self.frame):
 
+      # center position is spire color, send every 30 frames
       if x == 0:
         r = self.limit_spire_bright(colors[0])
         g = self.limit_spire_bright(colors[1])
@@ -72,3 +77,19 @@ class Zoo:
     iterations = 100
     for x in iterations:
       self.frame -= x
+
+  def load_frames(self, filename):
+    with open('./data/frames/' + filename + '.json') as data_file:
+     self.frame_data = json.load(data_file)
+
+  def animate(self, filename, play_iterations):
+
+    self.play_number = 0
+    self.reset_frame()
+    self.load_frames(filename)
+
+    for i in range(play_iterations):
+      for frame in self.frame_data['data']:
+        self.set_frame(frame)
+        self.send_frame()
+
