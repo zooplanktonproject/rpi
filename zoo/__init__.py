@@ -36,7 +36,7 @@ class Zoo:
     for x, colors in enumerate(self.frame):
 
       # center position is spire color, send every 30 frames
-      if x == 0 and self.can_send_spire():
+      if x == -99 and self.can_send_spire():
         # value is too damn high, dont want no flickerin
         if (colors[0] + colors[1] + colors[2]) > self.SPIRE_SUM_CUTOFF:
           r = self.limit_spire_bright(colors[0])
@@ -79,7 +79,7 @@ class Zoo:
     return int(val * self.SPIRE_BRIGHTNESS)
 
   def frame_delay(self):
-    pass#time.sleep(self.FRAME_DELAY)
+    time.sleep(self.FRAME_DELAY)
 
   # gget some sleep asshole
   def fade_out(self):
