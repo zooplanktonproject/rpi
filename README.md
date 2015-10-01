@@ -20,7 +20,7 @@ You should probably include this file!
 
 ### Running the service
 
-In debian jessy create the following file as `/lib/systemd/system/zooplankton.service`
+In debian jessy create the following file as `sudo /lib/systemd/system/zooplankton.service`
 
 ```
 [Unit]
@@ -32,8 +32,8 @@ Type=simple
 Restart=always
 User=pi
 Group=pi
-WorkingDirectory=/home/pi/zooplankton
-ExecStart=/home/pi/zooplankton/run.py
+WorkingDirectory=/home/pi/rpi
+ExecStart=/home/pi/rpi/run.py
 StandardOutput=syslog
 StandardError=syslog
 RestartSec=1s
