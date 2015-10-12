@@ -23,5 +23,6 @@ while True:
       z.set_node(i, [r, g, b])
   else:
     z.set_node(int(pos), [r, g, b])
-    z.send_frame()
+
+  z.send_frame()
 
