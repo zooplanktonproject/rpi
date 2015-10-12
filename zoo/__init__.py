@@ -38,8 +38,6 @@ class Zoo:
 
     output.write("".join(serial_array))
 
-    self.frame_number += 1
-
     self.frame_delay()
 
   def set_node(self, pos, color=[0, 0, 0]):
@@ -77,3 +75,4 @@ class Zoo:
       for frame in self.frame_data['data']:
         self.set_frame(frame)
         self.send_frame()
+        self.frame_number += 1
