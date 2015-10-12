@@ -59,8 +59,6 @@ class Zoo:
 
     output.write("".join(serial_array))
 
-    self.frame_number += 1
-
     self.frame_delay()
 
   def set_node(self, pos, color=[0, 0, 0]):
@@ -103,13 +101,4 @@ class Zoo:
       for frame in self.frame_data['data']:
         self.set_frame(frame)
         self.send_frame()
-
-  def can_send_spire(self):
-    if (self.frame_number == 0) or self.frame_number >= (self.spire_last_message_at_frame + self.SPIRE_SEND_FRAME_INTERVAL):
-
-      self.spire_last_message_at_frame = self.frame_number
-      return True
-
-    else:
-      return False
-
+        self.frame_number += 1
