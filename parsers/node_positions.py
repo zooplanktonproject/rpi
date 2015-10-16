@@ -1,7 +1,7 @@
 import json
 from PIL import Image, ImageFont, ImageDraw
 
-with open('../config/nodes.json') as data_file:
+with open('./config/nodes.json') as data_file:
     data = json.load(data_file)
 
 
@@ -66,4 +66,4 @@ for i, pos in data.items():
   draw.point((pos['x'], pos['y']), (0, 0, 0))
   draw.text((pos['x'], pos['y']), i, (0,0,0), font=usr_font)
 
-img.save("../data/positions.png", "PNG")
+img.save("./data/positions.png", "PNG")
