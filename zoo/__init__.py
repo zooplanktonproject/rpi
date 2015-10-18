@@ -6,7 +6,7 @@ import json
 
 class Zoo:
   # spire is considered a node at position zero
-  NODE_COUNT = 90
+  NODE_COUNT = 45
   START_CHAR = "@"
   END_CHAR = "#"
   FRAME_DELAY = 0.0030
