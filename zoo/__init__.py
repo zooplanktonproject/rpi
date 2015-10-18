@@ -9,7 +9,7 @@ class Zoo:
   NODE_COUNT = 45
   START_CHAR = "@"
   END_CHAR = "#"
-  FRAME_DELAY = 0.0030
+  FRAME_DELAY = 0.0300
   NODE_BRIGHTNESS = 100
   # ndarray data type, max int is 255 * 100 (uint8 * max brightness)
   NDTYPE=np.int16
@@ -64,6 +64,7 @@ class Zoo:
      self.frame_data = json.load(data_file)
 
   def animate(self, filename, play_iterations):
+    print(filename)
 
     self.play_number = 0
     self.frame_number = 0
