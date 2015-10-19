@@ -3,11 +3,11 @@ from PIL import Image
 from os import listdir
 from os.path import isfile, join
 
-mypath = "../data/gifs"
+mypath = "./data/gifs"
 
 onlyfiles = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
 
-with open('../config/nodes.json') as data_file:
+with open('./config/nodes.json') as data_file:
     nodes = json.load(data_file)
 
 for filename in onlyfiles:
@@ -24,7 +24,7 @@ for filename in onlyfiles:
   for i, pos in nodes.items():
     ordered_nodes[int(i)] = [pos['x'], pos['y']]
 
-  im = Image.open("../data/gifs/"+filename) #Can be many different formats.
+  im = Image.open("./data/gifs/"+filename) #Can be many different formats.
 
   target_size = 400, 400
 
@@ -64,7 +64,7 @@ for filename in onlyfiles:
       pass # end of sequence
 
 
-  with open("../data/frames/" + filename[:filename.index('.gif')] + ".json", 'w') as outfile:
+  with open("./data/frames/" + filename[:filename.index('.gif')] + ".json", 'w') as outfile:
       json.dump({
         "meta": {},
         "data": data
