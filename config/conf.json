@@ -1,0 +1,11 @@
+{
+  "output": "udp",
+  "serial": {
+    "path" : "/dev/ttyACM0",
+    "baud": 9600
+    },
+  "udp": {
+    "ip": "192.168.2.151",
+    "port": 8888
+  }
+}
