@@ -1,6 +1,7 @@
 from sys import platform as _platform
 import socket
 import json
+import serial
 
 with open('./config/conf.json') as data_file:
   conf = json.load(data_file)
@@ -15,6 +16,9 @@ if output == "udp":
   sock = socket.socket(socket.AF_INET, # Internet
                        socket.SOCK_DGRAM) # UDP
 
+if output == "serial":
+  ser = serial.Serial(conf["serial"]["path"], conf["serial"]["baud"])
+
 def write(str):
   if output == "console":
     print str
@@ -24,8 +28,6 @@ def write(str):
     write_udp(str)
 
 def write_serial(str):
-  import serial
-  ser = serial.Serial('/dev/ttyACM0', 9600)
   ser.write(str)
 
 def write_udp(str):
