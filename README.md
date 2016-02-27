@@ -6,6 +6,7 @@ This project takes files from the `./data/gifs/` directory and parses them so th
 
 The setup was an early raspberry pi model b with 256 MB ram, writing serial to the [zooplankton transceiver](https://github.com/zooplanktonproject/transceiver) via usb. A later raspberry pi could be used by changing the serial out device path. Test run first without starting/enabling the systemd service.
 
+Another option is to store the json files on an SD card which the microcontroller can directly read from. 
 
 #### Proccess gif RGB values
 
